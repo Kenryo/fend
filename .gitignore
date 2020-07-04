@@ -2,3 +2,5 @@
 node_modules/
 bower_components/
 .vscode/
+projects/landing-page/package*.json
+projects/landing-page/.eslintrc.json
