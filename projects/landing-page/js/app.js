@@ -34,7 +34,7 @@
 */
 
 // build the nav
-function buildNavBar() {
+function buildNavBar () {
 
     const navbar_elm = document.querySelector('#navbar__list');
     const vDom = document.createDocumentFragment();
@@ -58,7 +58,40 @@ function buildNavBar() {
 }
 
 // Add class 'active' to section when near top of viewport
+function setActive () {
+    
+    const currentActiveElm = document.querySelector('.your-active-class');
+    const sections = document.querySelectorAll('section');
 
+    let nearTopElm = null;
+    for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top < 100 && rect.top > -100) {
+
+            nearTopElm = section;
+            break;
+        }
+    }
+
+    if( nearTopElm === null ){
+        // if there is no appropriate section,
+        // leave the last one as active.
+        return
+    }
+
+    if( currentActiveElm && currentActiveElm.id === nearTopElm.id ) {
+        // do nothing if the active element hasn't changed.
+    }
+    else {
+        nearTopElm.className = "your-active-class";
+        if(currentActiveElm){
+
+            currentActiveElm.className = "";
+        }
+        
+    }
+}
 
 // Scroll to anchor ID using scrollTO event
 function scrollToAnchorId (evt) {
@@ -79,5 +112,6 @@ buildNavBar()
 // Scroll to section on link click
 
 // Set sections as active
+document.body.onscroll = setActive
 
 
