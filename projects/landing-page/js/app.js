@@ -44,10 +44,12 @@ function buildNavBar() {
         const data = section.getAttribute('data-nav');
     
         const list_elm = document.createElement('li');
-        const link = document.createElement('a');
+        const link = document.createElement('span');
         link.innerText = data
         link.className = 'menu__link'
-        link.href = '#' + section.id
+        link.setAttribute('link_id', section.id)
+        link.link = section.id
+        link.addEventListener('click', scrollToAnchorId)
     
         list_elm.appendChild(link)
         vDom.appendChild(list_elm)
@@ -59,7 +61,11 @@ function buildNavBar() {
 
 
 // Scroll to anchor ID using scrollTO event
-
+function scrollToAnchorId (evt) {
+    const rect = document.getElementById(evt.target.getAttribute('link_id')).getBoundingClientRect()
+    window.scrollTo(rect.left +  + window.pageXOffset, 
+                    rect.top + window.pageYOffset)
+}
 
 /**
  * End Main Functions
