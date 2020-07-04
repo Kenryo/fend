@@ -33,23 +33,25 @@
  * 
 */
 
-// build the nav
+/**
+* @description build the navigation bar
+*/
 function buildNavBar () {
 
-    const navbar_elm = document.querySelector('#navbar__list');
+    const navbar_elm = document.querySelector("#navbar__list");
     const vDom = document.createDocumentFragment();
-    const sections = document.querySelectorAll('section');
-    
+    const sections = document.querySelectorAll("section");
+
     for ( const section of sections ) {
-        const data = section.getAttribute('data-nav');
+        const data = section.getAttribute("data-nav");
     
-        const list_elm = document.createElement('li');
-        const link = document.createElement('span');
+        const list_elm = document.createElement("li");
+        const link = document.createElement("span");
         link.innerText = data
-        link.className = 'menu__link'
-        link.setAttribute('link_id', section.id)
+        link.className = "menu__link"
+        link.setAttribute("link_id", section.id)
         link.link = section.id
-        link.addEventListener('click', scrollToAnchorId)
+        link.addEventListener("click", scrollToAnchorId)
     
         list_elm.appendChild(link)
         vDom.appendChild(list_elm)
@@ -57,11 +59,13 @@ function buildNavBar () {
     navbar_elm.appendChild(vDom);
 }
 
-// Add class 'active' to section when near top of viewport
+/**
+* @description Add class 'active' to section when near top of viewport
+*/
 function setActive () {
-    
-    const currentActiveElm = document.querySelector('.your-active-class');
-    const sections = document.querySelectorAll('section');
+
+    const currentActiveElm = document.querySelector(".your-active-class");
+    const sections = document.querySelectorAll("section");
 
     let nearTopElm = null;
     for (const section of sections) {
@@ -77,27 +81,25 @@ function setActive () {
     if( nearTopElm === null ){
         // if there is no appropriate section,
         // leave the last one as active.
-        return
+        return;
     }
 
     if( currentActiveElm && currentActiveElm.id === nearTopElm.id ) {
         // do nothing if the active element hasn't changed.
+        return;
     }
-    else {
-        nearTopElm.className = "your-active-class";
-        if(currentActiveElm){
-
-            currentActiveElm.className = "";
-        }
-        
+    
+    nearTopElm.className = "your-active-class";
+    if(currentActiveElm){
+        currentActiveElm.className = "";
     }
 }
 
 // Scroll to anchor ID using scrollTO event
 function scrollToAnchorId (evt) {
-    const rect = document.getElementById(evt.target.getAttribute('link_id')).getBoundingClientRect()
-    window.scrollTo(rect.left +  + window.pageXOffset, 
-                    rect.top + window.pageYOffset)
+    const rect = document.getElementById(evt.target.getAttribute("link_id")).getBoundingClientRect();
+    window.scrollTo(rect.left + window.pageXOffset, 
+                    rect.top + window.pageYOffset);
 }
 
 /**
@@ -107,11 +109,11 @@ function scrollToAnchorId (evt) {
 */
 
 // Build menu 
-buildNavBar()
+buildNavBar();
 
 // Scroll to section on link click
 
 // Set sections as active
-document.body.onscroll = setActive
+document.body.onscroll = setActive;
 
 
