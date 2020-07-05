@@ -1,13 +1,30 @@
 # Landing Page Project
 
+This project is modified for Udacity front end developer class.
+
+The original source repository is at <https://github.com/udacity/fend.git>, using *refresh-2019* branch.
+
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Background](#Background)
+* [Structure](#Structure)
 
-## Instructions
+## Background
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This project demonstrate how to manipulate the DOM. The functionality serves two purposes: 
+- to prepare for appending dynamically added data to the DOM
+- to show how javascript can improve the usability of an otherwise static site
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Structure
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+There are HTML, CSS and Javascript files. I'm mainly updating javascript file. 
+
+- HTML
+  - index.html
+- CSS
+  - css/style.css
+- Javascript
+  - js/app.js
+
+
+
