@@ -36,7 +36,7 @@
 /**
 * @description build the navigation bar
 */
-function buildNavBar () {
+const buildNavBar = () => {
 
     const navbar_elm = document.querySelector("#navbar__list");
     const vDom = document.createDocumentFragment();
@@ -62,19 +62,20 @@ function buildNavBar () {
 /**
 * @description Add class 'active' to section when near top of viewport
 */
-function setActive () {
+const setActive = () => {
 
     const currentActiveElm = document.querySelector(".your-active-class");
     const sections = document.querySelectorAll("section");
 
     let nearTopElm = null;
+    let closestPosition = Infinity;
     for (const section of sections) {
         const rect = section.getBoundingClientRect();
 
-        if (rect.top < 100 && rect.top > -100) {
+        if (Math.abs(rect.top) < closestPosition) {
 
             nearTopElm = section;
-            break;
+            closestPosition = Math.abs(rect.top);
         }
     }
 
@@ -96,7 +97,7 @@ function setActive () {
 }
 
 // Scroll to anchor ID using scrollTO event
-function scrollToAnchorId (evt) {
+const scrollToAnchorId = (evt) => {
     const rect = document.getElementById(evt.target.getAttribute("link_id")).getBoundingClientRect();
     window.scrollTo(rect.left + window.pageXOffset, 
                     rect.top + window.pageYOffset);
