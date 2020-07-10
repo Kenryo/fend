@@ -18,23 +18,39 @@ const getWeatherData = async ( baseURL = '' ) => {
     return weather;
 };
 
+const postData = async ( path = '', data = {} ) => {
+    const response = await fetch (path, {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+};
+
 
 const generate = () => {
     
     const zipcode = document.getElementById('zip').value;
-    console.log(zipcode)
-    
     const feelings = document.getElementById('feelings').value;
-    console.log(feelings);
     
     const weatherData = getWeatherData("https://api.openweathermap.org/data/2.5/weather?zip="+zipcode)
     
     .then ((weatherData) => {
-        console.log(weatherData);
 
+        const data = {
+            temperature: weatherData.main["temp"],
+            date: newDate,
+            response: feelings
+        };
+
+        postData('/add', data)
+    })
+    .catch((error) => {
+        window.alert(error.message);
     })
 
 };
 
 document.getElementById('generate').addEventListener("click", generate);
-
