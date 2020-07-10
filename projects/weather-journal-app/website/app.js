@@ -29,6 +29,18 @@ const postData = async ( path = '', data = {} ) => {
     })
 };
 
+const updateUI = async () => {
+    const request = await fetch ('/data');
+    
+    try {
+        const data = await request.json();
+        document.getElementById('content').innerText = (data.response);
+        document.getElementById('date').innerText = data.date;
+        document.getElementById('temp').innerText = data.temperature;
+    }catch(error){
+        window.alert(error.message);
+    }
+};
 
 const generate = () => {
     
@@ -46,6 +58,9 @@ const generate = () => {
         };
 
         postData('/add', data)
+        .then (
+            updateUI()
+        )
     })
     .catch((error) => {
         window.alert(error.message);

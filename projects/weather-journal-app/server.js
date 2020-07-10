@@ -28,8 +28,8 @@ const server = app.listen(8000, ()=>{
     console.log('Server Started. Port:8000');
 });
 
-app.get('/all', (req, res) => {
-    console.log("(GET)/add: ", projectData);
+app.get('/data', (req, res) => {
+    console.log("(GET)/data: ", projectData);
     res.send(projectData);
 });
 
