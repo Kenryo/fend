@@ -31,5 +31,7 @@ To run the server locally, execute:
 node server.js
 ```
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+Then you can open <http://localhost:8000> with your browser.
+
+## Notes
+The app only supports US zipcode.
