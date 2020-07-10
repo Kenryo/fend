@@ -24,4 +24,18 @@ app.use(express.static('website'));
 
 
 // Setup Server
-const server = app.listen(8000, ()=>{console.log('Server Started. Port:8000')});
+const server = app.listen(8000, ()=>{
+    console.log('Server Started. Port:8000');
+});
+
+app.get('/all', (req, res) => {
+    console.log("(GET)/add: ", projectData);
+    res.send(projectData);
+});
+
+const receiveData = (req, res) => {
+    projectData = req.body;
+    console.log("(POST)/add: ", projectData);
+};
+
+app.post('/add', receiveData);
