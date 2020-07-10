@@ -13,7 +13,7 @@ const getWeatherData = async ( baseURL = '' ) => {
 
     const weather = await response.json();
     if (response.status !== 200) {
-        throw new Error("Zipcode may be invalid!")
+        throw new Error("Zipcode may be invalid!");
     }
     return weather;
 };
@@ -26,7 +26,7 @@ const postData = async ( path = '', data = {} ) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-    })
+    });
 };
 
 const updateUI = async () => {
@@ -34,9 +34,9 @@ const updateUI = async () => {
     
     try {
         const data = await request.json();
-        document.getElementById('content').innerText = (data.response);
-        document.getElementById('date').innerText = data.date;
-        document.getElementById('temp').innerText = data.temperature;
+        document.getElementById('content').innerHTML = data.response;
+        document.getElementById('date').innerHTML = data.date;
+        document.getElementById('temp').innerHTML = data.temperature;
     }catch(error){
         window.alert(error.message);
     }
