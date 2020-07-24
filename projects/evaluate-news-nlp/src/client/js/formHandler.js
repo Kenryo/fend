@@ -7,7 +7,7 @@ function handleSubmit(event) {
     console.log("::: Form Submitted :::" + formText)
 
     if(Client.isValidUrl(formText)) {
-        fetch('http://localhost:8081/test', {
+        fetch('http://localhost:8081/sentiment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
