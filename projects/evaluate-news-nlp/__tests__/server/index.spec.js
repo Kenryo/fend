@@ -7,7 +7,7 @@ beforeEach(() => {
     server.close();
 });
 
-describe('Get /test Endpoint', () => {
+describe('Get Endpoints', () => {
 
     it('Get root Endpoint should return html text response', () => {
         return request(app).get('/')
@@ -44,7 +44,7 @@ describe('Post /sentiment Endpoint', () => {
 
             expect(res.status).toEqual(200);
             expect(res.type).toEqual('application/json');
-            // expect(res.body.status.code).toEqual('0');
+            expect(res.body.status.code).toEqual('0');
         })
     });
 

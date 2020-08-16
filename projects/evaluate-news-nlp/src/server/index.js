@@ -17,7 +17,7 @@ app.use(express.static('dist'))
 console.log(__dirname)
 
 app.get('/', function (req, res) {
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile(path.resolve('dist/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
@@ -68,7 +68,10 @@ app.post('/sentiment', function (req, res) {
             //     "subjectivity_confidence":0.9963778207617525
             // }
             if(retJson.status.code === '0'){
-                delete retJson.status
+                // Although Aylien doesn't return the status code in the JSON,
+                // leave MeaningCloud's status for checking the actual code
+                // delete retJson.status
+
                 delete retJson.sentence_list
                 delete retJson.sentimented_entity_list
                 delete retJson.sentimented_concept_list
