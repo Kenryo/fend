@@ -37,6 +37,8 @@ Note: MeaningCloud only needs API key. .env file is ignored when you commit with
 
 If you see status code 100 (msg: "Operation denied") in the result on the page while testing, check if you set the key correctly.
 
+You should be able to find your license key [here](https://www.meaningcloud.com/developer/account/subscriptions) (You need to sign up).
+
 
 ## Unit Testing
 
