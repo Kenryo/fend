@@ -1,3 +1,5 @@
+const Client = require('./validateUrl')
+
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -28,10 +30,10 @@ function onBlur(event) {
     const formText = document.getElementById('name').value
     console.log("::: Leaving Text Input :::", formText)
     if(Client.isValidUrl(formText)){
-
+        document.getElementById('name').style.backgroundColor = 'white';
     }
     else {
-
+        document.getElementById('name').style.backgroundColor = 'pink';
     }
 }
 

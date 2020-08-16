@@ -25,6 +25,7 @@ const server = app.listen(port, function () {
     console.log(`Example app listening on port ${port}!`)
 })
 
+// test endpoint
 app.get('/test', function (req, res) {
     res.send({
         'title': 'test json response',
@@ -33,6 +34,7 @@ app.get('/test', function (req, res) {
     })
 })
 
+// post endpoint
 app.post('/sentiment', function (req, res) {
 
     // using MeaningCloud
@@ -44,7 +46,6 @@ app.post('/sentiment', function (req, res) {
         },
         'maxRedirects': 20
     };
-
 
     const request = https.request(options, (response) => {
         const chunks = [];
@@ -75,7 +76,7 @@ app.post('/sentiment', function (req, res) {
             else {
                 console.error('API call error: '+retJson.status.code)
             }
-            res.send(JSON.stringify(retJson));
+            res.json(retJson);
         });
     
         response.on("error", function (error) {
