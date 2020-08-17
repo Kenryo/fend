@@ -4,58 +4,59 @@ require('jest-fetch-mock').enableMocks()
 
 const dom = new JSDOM()
 
-jest.mock('../../__mocks__/client.js')
-
 // Manual Mock
 global.document = dom.window.document;
 const formInput = document.createElement('input')
-formInput.id='name'
-formInput.value='https://google.com'
+formInput.id = 'name'
+formInput.value = 'https://google.com'
 document.body.appendChild(formInput);
-const results = document.createElement('p')
+const results = document.createElement('div')
 results.id = 'results';
 document.body.appendChild(results)
 
+// there is no window. Mocking alert.
+global.window.alert = (msg) => {console.log(msg)}
+
 describe('handleSubmit Test', () => {
     beforeEach(() => {
-      fetch.resetMocks()
+        fetch.resetMocks()
     })
-    
+
     it('should call local server test endpoint', () => {
         const evtMock = {
-          preventDefault: () => {} // do nothing
+            preventDefault: () => { } // do nothing (dummy)
         }
 
-        // const Client = { post_NLP: () => { // do whatever required here return true; } };
+        // valid url in the form
+        document.getElementById('name').value = 'https://google.com'
 
-        // const handleSubmitMock=(event,Client)=>{}
-        // expect(handleSubmitMock(event,Client)).toBe(true);
         fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
 
         handleSubmit(evtMock)
+        // const rate = await handleSubmit(evtMock)
         expect(fetch).toHaveBeenCalledWith('http://localhost:8081/sentiment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({url: 'https://google.com'})
+            body: JSON.stringify({ url: 'https://google.com' })
         })
         expect(fetch).toHaveBeenCalledTimes(1);
-        // expect(document.getElementById('name').innerHTML).toEqual(JSON.stringify({ data: '12345' }))
+        
     })
 
-    it('should call local server test endpoint', () => {
-      const evtMock = {
-        preventDefault: () => {} // do nothing
-      }
+    it('should not call local server test endpoint with invalid url', () => {
+        const evtMock = {
+            preventDefault: () => { } // do nothing
+        }
 
-      // not url
-      document.getElementById('name').value = 'hogeko'
+        // not url
+        document.getElementById('name').value = 'hogeko'
 
-      fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
+        fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
 
-      handleSubmit(evtMock)
-      expect(fetch).toHaveBeenCalledTimes(0);
-  })
+        handleSubmit(evtMock)
+        expect(fetch).toHaveBeenCalledTimes(0);
+    })
 
 })

@@ -18,8 +18,10 @@ function handleSubmit(event) {
         })
         .then(res => res.json())
         .then( resJson =>  {
-            document.getElementById('results').innerHTML = JSON.stringify(resJson)
-        })
+            document.getElementById('results').innerHTML = '<pre><code>' + JSON.stringify(resJson, null, 4) + '</code></pre>'
+        }).catch(() => {
+            document.getElementById('results').innerHTML = 'Error Occured!!'
+        });
     } else {
         alert("URL is Invalid. Please correct the form.")
     }
