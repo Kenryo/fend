@@ -54,6 +54,7 @@ npm run test
 Note: 
 - Test files are in ```__tests__``` directory to follow Jest spec, not in ```__test__```.
 - Make sure local servers are not running, otherwise tests may fail due to port conflicts.
+- You may have to build production files with ```npm run build-prod``` first, so that server side tests load files and pass.
 
 ## Running Local Express Server
 
@@ -67,6 +68,7 @@ Otherwise, the client may work with service worker without a local server.
 
 ### Development instance
 npm will run a development node instance with port 8080 and launch a browser automatically. You may need to open another console to run the command while you are running the local server.
+To run the development server with default port 8080, make sure other development instances are not running before you run the command.
 ```
 npm run build-dev
 ```
